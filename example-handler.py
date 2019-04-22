@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
 import serial
+from datetime import datetime
+from threading import Lock, Thread, Event
 
-gustatometer = serial.Serial('/dev/cu.wchusbserial1410', baudrate=115200)
-print(gustatometer.name)
+import time
 
-print("Sending 'START'")
-gustatometer.write(b'START')
+gustato_com = serial.Serial('/dev/cu.wchusbserial1410', baudrate=115200)
+print(gustato_com.name)
 
-print("Reading 3 lines ...")
-print(gustatometer.readline())
-print(gustatometer.readline())
-print(gustatometer.readline())
+#print("Sending 'START'")
+#gustato_com.write(b'START')
+
+print("Reading ...")
+while True:
+    current_line = str(gustato_com.readline())
+    print(current_line)
+
+print("Exiting trigger thread ...")
 
 print("Sending 'STOP'")
-gustatometer.write(b'STOP')
+gustato_com.write(b'STOP')
