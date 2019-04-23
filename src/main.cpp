@@ -79,7 +79,7 @@ void loop() {
   voltageLevel = analogRead(A0);
   voltageLevel = ((voltageLevel/1024.0)*3.3)*(5.3/2.0);   // Voltage Divider: 3.3k Ohm + 2k Ohm
 
-  if(voltageLevel > 3 && triggered != 1) // new triggered detected
+  if(voltageLevel > 1 && triggered != 1) // new triggered detected
   {
     triggered = 1;
     StartTime = millis();
